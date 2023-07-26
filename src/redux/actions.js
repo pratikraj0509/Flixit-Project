@@ -4,8 +4,6 @@ import {API_URL, API_KEY} from "../config"
 export const getData=()=>{
     return async(dispatch)=>{
         const data=await fetch("https://netflix-h7qa.onrender.com/movie");
-        // const data=await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
-
         const resp=await data.json();
         dispatch({type:GETDATA,payload:resp.data})
     }
@@ -14,7 +12,6 @@ export const getData=()=>{
 export const addtolist=(data,toast)=>{
     return async(dispatch)=>{
         const data2=await fetch(`https://netflix-h7qa.onrender.com/movie/addlist/${data._id}`,
-        // const data2=await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`,
         {
             method:"POST",
             headers:{
@@ -33,7 +30,6 @@ export const addtolist=(data,toast)=>{
 export const removeList=(id,toast)=>{
     return async(disptach)=>{
         const data2=await fetch(`https://netflix-h7qa.onrender.com/movie/list/${id}`,{
-        // const data2=await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`,{
             method:"DELETE",
             headers:{
                 "content-type":"application/json",
@@ -50,7 +46,6 @@ export function loginUser(data,toast){
     return async function (dispatch,getState){
           try{
             const sendData=await fetch("https://netflix-h7qa.onrender.com/user/login",{
-                // const sendData=await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`,{
                 method:"POST",
                 headers:{"content-type":"application/json"},
                 body:JSON.stringify(data)
@@ -94,7 +89,6 @@ export function signupUser(data,toast){
     return async function (dispatch,getState){
           try{
             const sendData=await fetch("https://netflix-h7qa.onrender.com/user/signup",{
-                // const sendData=await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`,{
                 method:"POST",
                 headers:{"content-type":"application/json"},
                 body:JSON.stringify(data)
@@ -124,7 +118,6 @@ export function signupUser(data,toast){
 export const removeFromList=(id)=>{
     return  async()=>{
         const deleteList=await fetch(`https://netflix-h7qa.onrender.com/movie/list/${id}`,{
-            // const deleteList=await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`,{
             method:"DELETE",
             headers:{"content-type":"application/json","authentication":`bearer ${localStorage.getItem("TOKEN")}`},
         
@@ -135,7 +128,6 @@ export const removeFromList=(id)=>{
 export const getMyList=()=>{
     return async(dispatch)=>{
         const data=await fetch("https://netflix-h7qa.onrender.com/movie/list/all",{
-            // const data=await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`,{
             method:"GET",
             headers:{"authorization":`bearer ${localStorage.getItem("TOKEN")}`}
         });
